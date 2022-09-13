@@ -60,8 +60,7 @@ open class BaseComponentAct : ComponentActivity() {
                     Card(
                         modifier = Modifier
                             .fillMaxSize(),
-                        backgroundColor = Color.White,
-                        elevation = 3.dp,
+                        elevation = 0.dp,
                     ) {
                         Row(
                             modifier = Modifier
