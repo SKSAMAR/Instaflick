@@ -52,64 +52,66 @@ class HomeActivity : BaseComponentAct() {
 
     @Composable
     private fun HomeInstallation() {
-        BaseScaffold(
-            topBar = {
-                TopAppBar(
-                    elevation = 0.dp,
-                    backgroundColor = if (isSystemInDarkTheme()) Color.Black else Color.White,
-                    contentColor = if (isSystemInDarkTheme()) Color.White else Color.Black,
-                ) {
-                    CompositionLocalProvider(LocalRippleTheme provides ClearRippleTheme) {
-                        Row(
-                            modifier = Modifier.clickable {
+        CompositionLocalProvider(LocalRippleTheme provides ClearRippleTheme) {
+            BaseScaffold(
+                topBar = {
+                    TopAppBar(
+                        elevation = 0.dp,
+                        backgroundColor = if (isSystemInDarkTheme()) Color.Black else Color.White,
+                        contentColor = if (isSystemInDarkTheme()) Color.White else Color.Black,
+                    ) {
+                        CompositionLocalProvider(LocalRippleTheme provides ClearRippleTheme) {
+                            Row(
+                                modifier = Modifier.clickable {
 
-                            },
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Icon(
-                                modifier = Modifier
-                                    .fillMaxHeight(.6f)
-                                    .padding(start = 10.sdp),
-                                painter = painterResource(id = R.drawable.logo),
-                                contentDescription = null,
-                                tint = ThemeColor()
-                            )
-                            Icon(
-                                modifier = Modifier
-                                    .size(14.dp)
-                                    .padding(start = 1.sdp),
-                                painter = painterResource(id = R.drawable.arrow_down),
-                                contentDescription = null,
-                                tint = ThemeColor()
-                            )
-                        }
+                                },
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Icon(
+                                    modifier = Modifier
+                                        .fillMaxHeight(.6f)
+                                        .padding(start = 10.sdp),
+                                    painter = painterResource(id = R.drawable.logo),
+                                    contentDescription = null,
+                                    tint = ThemeColor()
+                                )
+                                Icon(
+                                    modifier = Modifier
+                                        .size(14.dp)
+                                        .padding(start = 1.sdp),
+                                    painter = painterResource(id = R.drawable.arrow_down),
+                                    contentDescription = null,
+                                    tint = ThemeColor()
+                                )
+                            }
 
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth(.9f)
-                                .fillMaxHeight(.6f),
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.End
-                        ) {
-                            Icon(
-                                modifier = Modifier.size(16.sdp),
-                                painter = painterResource(id = R.drawable.add),
-                                contentDescription = null,
-                                tint = ThemeColor()
-                            )
-                            Spacer(modifier = Modifier.width(15.sdp))
-                            Icon(
-                                modifier = Modifier.size(16.sdp),
-                                painter = painterResource(id = R.drawable.messenger),
-                                contentDescription = null,
-                                tint = ThemeColor()
-                            )
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth(.9f)
+                                    .fillMaxHeight(.6f),
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.End
+                            ) {
+                                Icon(
+                                    modifier = Modifier.size(16.sdp),
+                                    painter = painterResource(id = R.drawable.add),
+                                    contentDescription = null,
+                                    tint = ThemeColor()
+                                )
+                                Spacer(modifier = Modifier.width(15.sdp))
+                                Icon(
+                                    modifier = Modifier.size(16.sdp),
+                                    painter = painterResource(id = R.drawable.messenger),
+                                    contentDescription = null,
+                                    tint = ThemeColor()
+                                )
+                            }
                         }
                     }
                 }
+            ) {
+                HomeScreen()
             }
-        ) {
-            HomeScreen()
         }
     }
 }

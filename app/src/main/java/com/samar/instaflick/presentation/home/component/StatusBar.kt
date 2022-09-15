@@ -43,11 +43,11 @@ fun StatusBar(){
 
                 Card(
                     modifier = Modifier
-                        .size(55.sdp)
+                        .size(56.sdp)
                         .align(Alignment.Center),
                     shape = CircleShape,
                     border = BorderStroke(
-                        1.sdp,
+                        2.sdp,
                         color = OppositeThemeColor()
                     )
                 ){

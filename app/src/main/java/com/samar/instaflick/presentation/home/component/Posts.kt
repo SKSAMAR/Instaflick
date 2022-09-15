@@ -1,5 +1,6 @@
 package com.samar.instaflick.presentation.home.component
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -40,6 +41,7 @@ import com.samar.instaflick.presentation.ui.theme.SkyBlue
 import com.samar.instaflick.presentation.ui.theme.fonts
 import com.samar.instaflick.util.sdp
 import com.samar.instaflick.util.textSdp
+import kotlinx.coroutines.delay
 
 @OptIn(ExperimentalPagerApi::class)
 @Preview(showBackground = true)
@@ -49,6 +51,19 @@ fun ImagesPosts(
 ) {
     val pageState = rememberPagerState(initialPage = 0)
     var postLiked by remember { mutableStateOf(postModel.isLiked) }
+
+    var justSlided by remember {
+        mutableStateOf(false)
+    }
+
+    LaunchedEffect(key1 = pageState.isScrollInProgress){
+        if (!pageState.isScrollInProgress){
+            justSlided = true
+            delay(2000)
+            justSlided = false
+        }
+    }
+
     Column(
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -127,20 +142,23 @@ fun ImagesPosts(
                     )
                 }
             }
-            Card(
-                modifier = Modifier
-                    .align(Alignment.TopEnd)
-                    .padding(10.sdp),
-                elevation = 0.sdp,
-                shape = RoundedCornerShape(10.sdp),
-                backgroundColor = Color.Black.copy(alpha = 0.5f)
-            ) {
+
+            if(justSlided){
+                Card(
+                    modifier = Modifier
+                        .align(Alignment.TopEnd)
+                        .padding(10.sdp),
+                    elevation = 0.sdp,
+                    shape = RoundedCornerShape(10.sdp),
+                    backgroundColor = Color.Black.copy(alpha = 0.5f)
+                ) {
                 Text(
                     modifier = Modifier.padding(vertical = 3.sdp, horizontal = 7.sdp),
                     text = "${pageState.currentPage + 1}/${postModel.postData.size}",
                     fontSize = 11.textSdp,
                     color = Color.White
                 )
+            }
             }
         }
         Row(
