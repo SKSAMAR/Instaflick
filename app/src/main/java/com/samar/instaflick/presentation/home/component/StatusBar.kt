@@ -29,20 +29,30 @@ fun StatusBar(){
         Card(
             modifier = Modifier.size(60.sdp),
             shape = CircleShape,
-            border = BorderStroke(
-                1.5.dp,
-                brush = Brush.verticalGradient(colors = listOf(
-                    Orange,
-                    Purple,
-                    LightYellow,
-                    Orange,
-                    Pink,
-                    Purple,
-                    Blue
-                ))
-            )
+//            border = BorderStroke(
+//                1.5.dp,
+//                brush = Brush.verticalGradient(colors = listOf(
+//                    Orange,
+//                    Purple,
+//                    LightYellow,
+//                    Orange,
+//                    Pink,
+//                    Purple,
+//                    Blue
+//                ))
+//            )
         ) {
-            Box(modifier = Modifier.fillMaxSize()){
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+            ){
+                Image(
+                    modifier = Modifier.fillMaxSize(),
+                    painter = painterResource(id =R.drawable.insta_circle),
+                    contentDescription = null,
+                    contentScale = ContentScale.Crop
+                )
+
                 Card(
                     modifier = Modifier
                         .size(55.sdp)
