@@ -28,19 +28,7 @@ fun StatusBar(){
 
         Card(
             modifier = Modifier.size(60.sdp),
-            shape = CircleShape,
-//            border = BorderStroke(
-//                1.5.dp,
-//                brush = Brush.verticalGradient(colors = listOf(
-//                    Orange,
-//                    Purple,
-//                    LightYellow,
-//                    Orange,
-//                    Pink,
-//                    Purple,
-//                    Blue
-//                ))
-//            )
+            shape = CircleShape
         ) {
             Box(
                 modifier = Modifier

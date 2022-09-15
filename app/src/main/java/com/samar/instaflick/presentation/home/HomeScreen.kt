@@ -22,10 +22,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.samar.instaflick.R
 import com.samar.instaflick.presentation.common.OppositeThemeColor
 import com.samar.instaflick.presentation.common.ThemeColor
+import com.samar.instaflick.presentation.home.component.ImagesPosts
 import com.samar.instaflick.presentation.home.component.StatusBar
 import com.samar.instaflick.presentation.ui.theme.SkyBlue
 import com.samar.instaflick.presentation.ui.theme.fonts
@@ -33,60 +35,112 @@ import com.samar.instaflick.util.sdp
 import com.samar.instaflick.util.textSdp
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(userHasStatus: Boolean = false) {
     LazyColumn {
         item {
             LazyRow {
                 item {
                     Row {
                         Spacer(modifier = Modifier.padding(horizontal = 10.dp))
-                        Column {
-                            Box(
-                                modifier = Modifier
-                                    .size(60.sdp)
-                            ) {
-                                Card(
-                                    modifier = Modifier
-                                        .size(55.sdp)
-                                        .align(Alignment.Center),
-                                    shape = CircleShape,
-                                    border = BorderStroke(width = 0.25.dp, color = ThemeColor())
-                                ) {
-                                    Image(
-                                        painter = painterResource(id = R.drawable.dp),
-                                        contentDescription = null,
-                                        contentScale = ContentScale.Crop
-                                    )
-                                }
+                        if (userHasStatus) {
+                            Column(modifier = Modifier.width(70.dp)) {
 
                                 Card(
-                                    modifier = Modifier
-                                        .align(Alignment.BottomEnd)
-                                        .padding(bottom = 4.dp),
-                                    border = BorderStroke(1.sdp, color = OppositeThemeColor()),
-                                    shape = CircleShape,
-                                    backgroundColor = SkyBlue,
-                                    contentColor = Color.White
+                                    modifier = Modifier.size(60.sdp),
+                                    shape = CircleShape
                                 ) {
-                                    Icon(
+                                    Box(
                                         modifier = Modifier
-                                            .size(20.dp)
-                                            .padding(3.dp),
-                                        imageVector = Icons.Default.Add,
-                                        contentDescription = null
-                                    )
+                                            .fillMaxSize()
+                                    ) {
+                                        Image(
+                                            modifier = Modifier.fillMaxSize(),
+                                            painter = painterResource(id = R.drawable.insta_circle),
+                                            contentDescription = null,
+                                            contentScale = ContentScale.Crop
+                                        )
+
+                                        Card(
+                                            modifier = Modifier
+                                                .size(55.sdp)
+                                                .align(Alignment.Center),
+                                            shape = CircleShape,
+                                            border = BorderStroke(
+                                                1.sdp,
+                                                color = OppositeThemeColor()
+                                            )
+                                        ) {
+                                            Image(
+                                                modifier = Modifier.fillMaxSize(),
+                                                painter = painterResource(id = R.drawable.dp),
+                                                contentDescription = null,
+                                                contentScale = ContentScale.Crop
+                                            )
+                                        }
+
+                                    }
                                 }
+                                Text(
+                                    modifier = Modifier
+                                        .padding(vertical = 5.dp)
+                                        .align(Alignment.CenterHorizontally),
+                                    text = "Your story",
+                                    maxLines = 1,
+                                    overflow = TextOverflow.Ellipsis,
+                                    color = ThemeColor(),
+                                    fontSize = 10.textSdp,
+                                    fontFamily = fonts
+                                )
                             }
-                            Text(
-                                modifier = Modifier
-                                    .padding(vertical = 5.dp)
-                                    .align(Alignment.CenterHorizontally),
-                                text = "Your story",
-                                maxLines = 1,
-                                color = ThemeColor(),
-                                fontSize = 10.textSdp,
-                                fontFamily = fonts
-                            )
+                        } else {
+                            Column {
+                                Box(
+                                    modifier = Modifier
+                                        .size(60.sdp)
+                                ) {
+                                    Card(
+                                        modifier = Modifier
+                                            .size(55.sdp)
+                                            .align(Alignment.Center),
+                                        shape = CircleShape,
+                                        border = BorderStroke(width = 0.25.dp, color = ThemeColor())
+                                    ) {
+                                        Image(
+                                            painter = painterResource(id = R.drawable.dp),
+                                            contentDescription = null,
+                                            contentScale = ContentScale.Crop
+                                        )
+                                    }
+
+                                    Card(
+                                        modifier = Modifier
+                                            .align(Alignment.BottomEnd)
+                                            .padding(bottom = 4.dp),
+                                        border = BorderStroke(1.sdp, color = OppositeThemeColor()),
+                                        shape = CircleShape,
+                                        backgroundColor = SkyBlue,
+                                        contentColor = Color.White
+                                    ) {
+                                        Icon(
+                                            modifier = Modifier
+                                                .size(20.dp)
+                                                .padding(3.dp),
+                                            imageVector = Icons.Default.Add,
+                                            contentDescription = null
+                                        )
+                                    }
+                                }
+                                Text(
+                                    modifier = Modifier
+                                        .padding(vertical = 5.dp)
+                                        .align(Alignment.CenterHorizontally),
+                                    text = "Your story",
+                                    maxLines = 1,
+                                    color = ThemeColor(),
+                                    fontSize = 10.textSdp,
+                                    fontFamily = fonts
+                                )
+                            }
                         }
                     }
                 }
@@ -95,6 +149,10 @@ fun HomeScreen() {
                     StatusBar()
                 }
             }
+        }
+        items(20) {
+            ImagesPosts()
+            Spacer(modifier = Modifier.height(10.sdp))
         }
     }
 }
