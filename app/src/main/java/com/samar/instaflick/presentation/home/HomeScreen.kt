@@ -24,6 +24,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
 import com.samar.instaflick.R
 import com.samar.instaflick.presentation.common.OppositeThemeColor
 import com.samar.instaflick.presentation.common.ThemeColor
@@ -53,9 +54,9 @@ fun HomeScreen(userHasStatus: Boolean = false) {
                                         modifier = Modifier
                                             .fillMaxSize()
                                     ) {
-                                        Image(
+                                        AsyncImage(
                                             modifier = Modifier.fillMaxSize(),
-                                            painter = painterResource(id = R.drawable.insta_circle),
+                                            model = R.drawable.insta_circle,
                                             contentDescription = null,
                                             contentScale = ContentScale.Crop
                                         )
@@ -70,9 +71,9 @@ fun HomeScreen(userHasStatus: Boolean = false) {
                                                 color = OppositeThemeColor()
                                             )
                                         ) {
-                                            Image(
+                                            AsyncImage(
                                                 modifier = Modifier.fillMaxSize(),
-                                                painter = painterResource(id = R.drawable.dp),
+                                                model = R.drawable.dp,
                                                 contentDescription = null,
                                                 contentScale = ContentScale.Crop
                                             )
@@ -105,8 +106,8 @@ fun HomeScreen(userHasStatus: Boolean = false) {
                                         shape = CircleShape,
                                         border = BorderStroke(width = 0.25.dp, color = ThemeColor())
                                     ) {
-                                        Image(
-                                            painter = painterResource(id = R.drawable.dp),
+                                        AsyncImage(
+                                            model = R.drawable.dp,
                                             contentDescription = null,
                                             contentScale = ContentScale.Crop
                                         )
@@ -150,7 +151,7 @@ fun HomeScreen(userHasStatus: Boolean = false) {
                 }
             }
         }
-        items(20) {
+        items(5) {
             ImagesPosts()
             Spacer(modifier = Modifier.height(10.sdp))
         }

@@ -14,6 +14,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
 import com.samar.instaflick.R
 import com.samar.instaflick.presentation.common.OppositeThemeColor
 import com.samar.instaflick.presentation.common.ThemeColor
@@ -34,9 +35,9 @@ fun StatusBar(){
                 modifier = Modifier
                     .fillMaxSize()
             ){
-                Image(
+                AsyncImage(
                     modifier = Modifier.fillMaxSize(),
-                    painter = painterResource(id =R.drawable.insta_circle),
+                    model = R.drawable.insta_circle,
                     contentDescription = null,
                     contentScale = ContentScale.Crop
                 )
@@ -51,9 +52,9 @@ fun StatusBar(){
                         color = OppositeThemeColor()
                     )
                 ){
-                    Image(
+                    AsyncImage(
                         modifier = Modifier.fillMaxSize(),
-                        painter = painterResource(id = R.drawable.dp),
+                        model = R.drawable.dp,
                         contentDescription = null,
                         contentScale = ContentScale.Crop
                     )

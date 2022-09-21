@@ -1,6 +1,5 @@
 package com.samar.instaflick.presentation.home.component
 
-import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -8,26 +7,27 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
+import androidx.compose.material.Card
+import androidx.compose.material.Divider
+import androidx.compose.material.Icon
+import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
 import com.google.accompanist.flowlayout.FlowRow
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
@@ -92,9 +92,9 @@ fun ImagesPosts(
                         color = OppositeThemeColor()
                     )
                 ) {
-                    Image(
+                    AsyncImage(
                         modifier = Modifier.fillMaxSize(),
-                        painter = painterResource(id = postModel.profileImage),
+                        model = postModel.profileImage,
                         contentDescription = "profile_image",
                         contentScale = ContentScale.Crop
                     )
@@ -128,15 +128,15 @@ fun ImagesPosts(
         ) {
             HorizontalPager(
                 count = postModel.postData.size,
-                state = pageState,
-                itemSpacing = 10.dp
+                state = pageState
             ) { items ->
                 Box(
                     modifier = Modifier.fillMaxSize()
                 ) {
-                    Image(
+
+                    AsyncImage(
+                        model = postModel.postData[items],
                         modifier = Modifier.fillMaxSize(),
-                        painter = painterResource(id = postModel.postData[items]),
                         contentDescription = "post_image",
                         contentScale = ContentScale.Crop
                     )
@@ -172,42 +172,39 @@ fun ImagesPosts(
                 modifier = Modifier,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Image(
+                AsyncImage(
                     modifier = Modifier
                         .clickable {
                             postLiked = !postLiked
                             postModel.isLiked = !postModel.isLiked
                         }
                         .size(20.sdp),
-                    painter = painterResource(
-                        id = if (!postLiked && isSystemInDarkTheme())
+                    model =
+                        if (!postLiked && isSystemInDarkTheme())
                             R.drawable.light_dislike
                         else if (!postLiked && !isSystemInDarkTheme())
                             R.drawable.dark_dislike
                         else R.drawable.liked
-                    ),
+                    ,
                     contentDescription = "",
                 )
                 Spacer(modifier = Modifier.width(10.sdp))
-                Image(
+                AsyncImage(
                     modifier = Modifier
                         .size(20.sdp),
-                    painter = painterResource(
-                        id = if (isSystemInDarkTheme())
+                    model = if (isSystemInDarkTheme())
                             R.drawable.comment_light
                         else R.drawable.comment_dark
-                    ),
+                    ,
                     contentDescription = "",
                 )
                 Spacer(modifier = Modifier.width(10.sdp))
-                Image(
+                AsyncImage(
                     modifier = Modifier
                         .size(20.sdp),
-                    painter = painterResource(
-                        id = if (isSystemInDarkTheme())
+                    model = if (isSystemInDarkTheme())
                             R.drawable.light_share
-                        else R.drawable.dark_share
-                    ),
+                        else R.drawable.dark_share,
                     contentDescription = "",
                 )
                 Spacer(modifier = Modifier.width(20.sdp))
@@ -227,14 +224,12 @@ fun ImagesPosts(
                 Spacer(modifier = Modifier.width(20.sdp))
                 Spacer(modifier = Modifier.width(10.sdp))
                 Spacer(modifier = Modifier.width(20.sdp))
-                Image(
+                AsyncImage(
                     modifier = Modifier
                         .size(20.sdp),
-                    painter = painterResource(
-                        id = if (isSystemInDarkTheme())
+                    model = if (isSystemInDarkTheme())
                             R.drawable.light_bookmark
-                        else R.drawable.dark_bookmark
-                    ),
+                        else R.drawable.dark_bookmark,
                     contentDescription = "",
                 )
             }
