@@ -259,7 +259,7 @@ fun ImagesPosts(
                     text = buildAnnotatedString {
                         withStyle(
                             style = SpanStyle(
-                                color = Color.Black,
+                                color = ThemeColor(),
                                 fontWeight = FontWeight.SemiBold
                             )
                         ) {
